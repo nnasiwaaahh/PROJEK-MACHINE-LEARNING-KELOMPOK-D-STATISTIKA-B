@@ -62,87 +62,87 @@ https://www.kaggle.com/datasets/mirichoi0218/insurance
 
 ## Cara Menjalankan
 
-### 1. Clone Repository
+### 1. Persiapkan Dataset
 
-```bash
-git clone https://github.com/username/nama-repository.git
-cd nama-repository
+Pastikan file dataset **insurance.csv** berada pada folder yang sama dengan notebook **PROJECT_ML.ipynb**.
+
+Struktur folder:
+
+```text
+project/
+│
+├── PROJECT_ML.ipynb
+└── insurance.csv
 ```
 
-### 2. Install Dependencies
+### 2. Install Library yang Dibutuhkan
+
+Jalankan perintah berikut pada terminal atau command prompt:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
 
-### 3. Jalankan Notebook / Script
+### 3. Jalankan Jupyter Notebook
 
-Jika menggunakan Jupyter Notebook:
+Buka terminal pada folder project lalu jalankan:
 
 ```bash
 jupyter notebook
 ```
 
-Buka file notebook dan jalankan seluruh cell secara berurutan.
-
-Atau jika menggunakan Python Script:
-
-```bash
-python main.py
-```
-
-### 4. Tahapan Pemrosesan
-
-1. Load dataset
-2. Exploratory Data Analysis (EDA)
-3. Encoding variabel kategorik
-4. Feature Engineering (BMI_Age)
-5. Scaling data
-6. Split data train-test (80:20)
-7. Training model
-8. Hyperparameter tuning
-9. Evaluasi model
-10. Analisis feature importance
-
----
-
-## Ringkasan Hasil
-
-### Hasil EDA
-
-* Dataset tidak memiliki missing value.
-* Ditemukan 1 data duplikat yang dihapus pada tahap preprocessing.
-* Variabel charges memiliki distribusi right-skewed.
-* Mayoritas peserta merupakan non-perokok.
-* Variabel smoker menunjukkan hubungan paling kuat terhadap biaya asuransi kesehatan.
-
-### Feature Engineering
-
-Dibuat fitur baru:
+Kemudian buka file:
 
 ```text
-BMI_Age = BMI × Age
+PROJECT_ML.ipynb
 ```
 
-Fitur ini menunjukkan korelasi yang cukup kuat terhadap biaya asuransi kesehatan.
+### 4. Jalankan Seluruh Cell Secara Berurutan
 
-### Modeling
+Urutan proses dalam notebook:
 
-Model yang diuji:
+1. Import Library
+2. Load Dataset
+3. Exploratory Data Analysis (EDA)
+4. Data Preprocessing
 
-* Linear Regression
-* KNN Regression
-* Random Forest Regressor
-* XGBoost Regressor
+   * Menghapus data duplikat
+   * Binary Encoding (`sex`, `smoker`)
+   * One-Hot Encoding (`region`)
+5. Feature Engineering
 
-### Hyperparameter Tuning
+   * Membuat fitur `bmi_age`
+6. Train-Test Split (80:20)
+7. Standardisasi Data untuk KNN
+8. Pemodelan:
 
-Dilakukan tuning pada Random Forest menggunakan GridSearchCV dengan:
+   * Linear Regression
+   * KNN Regressor
+   * Random Forest Regressor
+   * XGBoost Regressor
+9. Evaluasi Model
+10. Hyperparameter Tuning Random Forest
+11. Analisis Feature Importance
 
-* n_estimators = 100, 200, 300
-* max_depth = 3, 4, 5
-* min_samples_split = 2, 5, 10
-* min_samples_leaf = 1, 2, 4
+### 5. Output yang Dihasilkan
+
+Notebook akan menghasilkan:
+
+* Statistik deskriptif dataset
+* Visualisasi distribusi data
+* Heatmap korelasi
+* Perbandingan performa model
+* Hasil hyperparameter tuning
+* Nilai evaluasi MAE, RMSE, dan R²
+* Feature importance dari model terbaik
+
+### Konfigurasi yang Digunakan
+
+* Train-Test Split : 80% Training, 20% Testing
+* Random State : 42
+* Scaling : StandardScaler (khusus KNN)
+* Hyperparameter Tuning : GridSearchCV (5-Fold Cross Validation)
+
 
 ### Kesimpulan
 
