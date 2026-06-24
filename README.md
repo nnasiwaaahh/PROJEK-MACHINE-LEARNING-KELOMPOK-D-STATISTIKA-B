@@ -62,94 +62,105 @@ https://www.kaggle.com/datasets/mirichoi0218/insurance
 
 ## Cara Menjalankan
 
-### 1. Persiapkan Dataset
+1. **Import Library**
 
-Pastikan file dataset **insurance.csv** berada pada folder yang sama dengan notebook **PROJECT_ML.ipynb**.
+   Jalankan cell pertama untuk mengimpor seluruh library yang diperlukan, seperti Pandas, NumPy, Matplotlib, Seaborn, Scikit-Learn, dan XGBoost.
 
-Struktur folder:
+2. **Memuat Dataset**
 
-```text
-project/
-│
-├── PROJECT_ML.ipynb
-└── insurance.csv
-```
+   Jalankan cell load dataset untuk membaca file `insurance.csv` menggunakan Pandas dan menampilkan beberapa data awal.
 
-### 2. Install Library yang Dibutuhkan
+3. **Memahami Struktur Dataset**
 
-Jalankan perintah berikut pada terminal atau command prompt:
+   Jalankan cell yang menampilkan:
 
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost
-```
+   * Dimensi dataset (`shape`)
+   * Informasi tipe data (`info`)
+   * Statistik deskriptif setiap variabel
 
-### 3. Jalankan Jupyter Notebook
+4. **Eksplorasi Data (EDA)**
 
-Buka terminal pada folder project lalu jalankan:
+   Jalankan seluruh cell EDA untuk:
 
-```bash
-jupyter notebook
-```
+   * Memeriksa missing value
+   * Memeriksa data duplikat
+   * Melihat distribusi variabel kategorik
+   * Menampilkan histogram
+   * Menampilkan boxplot
+   * Menampilkan countplot
 
-Kemudian buka file:
+5. **Preprocessing Data**
 
-```text
-PROJECT_ML.ipynb
-```
-
-### 4. Jalankan Seluruh Cell Secara Berurutan
-
-Urutan proses dalam notebook:
-
-1. Import Library
-2. Load Dataset
-3. Exploratory Data Analysis (EDA)
-4. Data Preprocessing
+   Jalankan cell preprocessing untuk:
 
    * Menghapus data duplikat
-   * Binary Encoding (`sex`, `smoker`)
-   * One-Hot Encoding (`region`)
-5. Feature Engineering
+   * Melakukan Binary Encoding pada variabel `sex` dan `smoker`
+   * Melakukan One-Hot Encoding pada variabel `region`
 
-   * Membuat fitur `bmi_age`
-6. Train-Test Split (80:20)
-7. Standardisasi Data untuk KNN
-8. Pemodelan:
+6. **Feature Engineering**
 
-   * Linear Regression
-   * KNN Regressor
-   * Random Forest Regressor
-   * XGBoost Regressor
-9. Evaluasi Model
-10. Hyperparameter Tuning Random Forest
-11. Analisis Feature Importance
+   Jalankan cell feature engineering untuk membuat variabel baru `bmi_age` yang merupakan hasil perkalian antara BMI dan usia.
 
-### 5. Output yang Dihasilkan
+7. **Analisis Korelasi**
 
-Notebook akan menghasilkan:
+   Jalankan cell heatmap korelasi untuk melihat hubungan antar variabel dan mengidentifikasi fitur yang paling berpengaruh terhadap biaya asuransi.
 
-* Statistik deskriptif dataset
-* Visualisasi distribusi data
-* Heatmap korelasi
-* Perbandingan performa model
-* Hasil hyperparameter tuning
-* Nilai evaluasi MAE, RMSE, dan R²
-* Feature importance dari model terbaik
+8. **Membagi Data Training dan Testing**
 
-### Konfigurasi yang Digunakan
+   Jalankan cell train-test split untuk membagi data menjadi:
 
-* Train-Test Split : 80% Training, 20% Testing
-* Random State : 42
-* Scaling : StandardScaler (khusus KNN)
-* Hyperparameter Tuning : GridSearchCV (5-Fold Cross Validation)
+   * 80% data training
+   * 20% data testing
+
+9. **Standardisasi Data**
+
+   Jalankan proses StandardScaler untuk menstandarkan data yang akan digunakan pada model K-Nearest Neighbor (KNN).
+
+10. **Membangun Model Linear Regression**
+
+    Jalankan cell Linear Regression untuk memperoleh nilai MAE, RMSE, dan R² sebagai model baseline.
+
+11. **Membangun Model KNN Regressor**
+
+    Jalankan cell KNN untuk:
+
+    * Menguji nilai K dari 1 hingga 30
+    * Menentukan nilai K terbaik menggunakan metode elbow
+    * Mengevaluasi performa model
+
+12. **Membangun Model Random Forest**
+
+    Jalankan cell Random Forest Regressor untuk memperoleh hasil prediksi dan nilai evaluasi model.
+
+13. **Membangun Model XGBoost**
+
+    Jalankan cell XGBoost Regressor untuk membandingkan performanya dengan model lainnya.
+
+14. **Mengevaluasi Seluruh Model**
+
+    Jalankan cell evaluasi untuk membandingkan nilai MAE, RMSE, dan R² dari seluruh model yang digunakan.
+
+15. **Hyperparameter Tuning Random Forest**
+
+    Jalankan GridSearchCV untuk mencari kombinasi parameter terbaik pada model Random Forest.
+
+16. **Melatih Ulang Model Terbaik**
+
+    Gunakan parameter terbaik hasil GridSearchCV untuk membangun model Random Forest yang telah dioptimalkan.
+
+17. **Analisis Feature Importance**
+
+    Jalankan cell feature importance untuk mengetahui variabel yang paling berpengaruh dalam memprediksi biaya asuransi kesehatan.
+
+18. **Menarik Kesimpulan**
+
+    Bandingkan seluruh hasil evaluasi model dan tentukan model dengan performa terbaik berdasarkan nilai MAE, RMSE, dan R².
 
 
 ### Kesimpulan
 
-* Faktor yang paling memengaruhi biaya asuransi kesehatan adalah status merokok (smoker).
-* Variabel age, BMI, dan fitur BMI_Age juga memiliki pengaruh yang cukup besar.
-* Random Forest hasil tuning memberikan performa terbaik dibandingkan model lainnya berdasarkan evaluasi MAE, RMSE, dan R².
-* Machine learning terbukti mampu digunakan untuk memprediksi biaya asuransi kesehatan dengan baik berdasarkan karakteristik peserta.
+Berdasarkan hasil penelitian, dataset Insurance tidak memiliki missing value dan hanya terdapat satu data duplikat yang dihapus pada tahap preprocessing. Model yang dibangun menggunakan Linear Regression, KNN, Random Forest, dan XGBoost menunjukkan bahwa Random Forest memiliki performa terbaik. Setelah dilakukan hyperparameter tuning dengan GridSearchCV, model Random Forest memperoleh MAE 2.412,31, RMSE 4.203,34, dan R² 0,9039, sehingga mampu menjelaskan 90,39% variasi biaya asuransi kesehatan. Analisis feature importance menunjukkan bahwa variabel smoker, bmi, age, dan bmi_age merupakan faktor yang paling berpengaruh dalam memprediksi biaya asuransi kesehatan.
+
 
 ---
 
@@ -164,7 +175,3 @@ Notebook akan menghasilkan:
 * XGBoost
 
 ---
-
-## Lisensi
-
-Project ini dibuat untuk keperluan akademik pada mata kuliah Machine Learning Program Studi Statistika Universitas Jenderal Soedirman.
