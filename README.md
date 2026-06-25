@@ -164,14 +164,8 @@ Berdasarkan hasil penelitian, dataset Insurance tidak memiliki missing value dan
 
 ---
 
-## Tools & Libraries
+## Tools 
 
 * Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-Learn
-* XGBoost
-
+* Canva
 ---
